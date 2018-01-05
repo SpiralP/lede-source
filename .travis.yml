@@ -1,8 +1,8 @@
 sudo: false
 language: cpp
-cache: ccache
+#cache: ccache
 
-before_script:
+script:
 # for some reason we would hang forever on "checking for a Python interpreter with version >= 2.5..."
 # making language: python, and when testing all versions, only 2.7 passed
 #  - source ~/virtualenv/python2.7/bin/activate
@@ -49,38 +49,37 @@ before_script:
 #    done
 #  - printf 'AAA' ; cat .config ; printf 'BBB' ; false
 #  - make defconfig
-  - false
-script:
-  - |
-    if [ -f "$HOME/.ccache/staging_dir.tar.xz" ]; then
-      echo compiling from cache
-      make -j3 V=w \
-        && find bin \
-        && cat bin/targets/ramips/rt3883/sha256sums
-      else
-        echo compiling tools
-        make -j3 tools/compile \
-          && make -j3 V=w toolchain/compile
-      fi
-
-before_cache:
-  - |
-    if [ ! -f "$HOME/.ccache/staging_dir.tar.xz" ]; then
-      echo storing compiled tools in cache
-      tar -cf - staging_dir | xz -c -3 - > "$HOME/.ccache/staging_dir.tar.xz"
-    fi
-
-deploy:
-  provider: releases
-  api_key:
-    secure: "uAAt4jRusTUKxDGLSdha6Ut8RSKU7lRsPNuh8Y66yjK+yXVvEnhp4SLecQdHliIN+QdtwtljtdqpQXOdVI8gH+Ocn1XExaWPzFZMC52AZzQ6F+NEgT1H/duHRdpW7iVjNce8HI+ZKi0EP2Nuxqj5rmohjulMugt/rbLCiIebGUWE7zG3weQRIJmKAZRMG68q5it64Xf6BuBmgJ42rNmVQ4+hzIBIY2R4I04vY7aeB0yiNZ13gRoHCyQBiY+LtxbaC7m1Mr5LJtpQZG3GrZa/r/qR9yQL5IxdNXASHptlfpMVheF7j7oYnZmpWv3ky9ZtnmQ+hI1dr/wbjl7v3jeCflwTggWtKohYOHFlGCXZ26/Cres+EqOo1h8zyoArWILHR8qfhdypi/uBocYJ2kxuI8MtC5qZ0Bf338hpvMRGm6+f2Ip1plwzDsEcBsavIBCDpMDcru7vexnFQK40l4E0/4L9i5DtBcwRyheL3YIck+YF4TsB1g8gIH3STiVGgIsZOsHM5ARaPhPFDT78+GTrQhX0pAUKuiqnLTOlPPzfRXzaD1YQqHZJbntYiFdueGvzZ0YayqLfpa9BhaWl3VqtL0t7bwMhC26UWNq8repIwQ7+c1zbph6qjLyjVprb8MB9dTEVe8OC4Dgktqa1sPqmOO3WIDIKc6r6188AemZXu2Y="
-  file:
-    - "bin/targets/ramips/rt3883/openwrt-ramips-rt3883-rt-n56u-squashfs-sysupgrade.bin"
-    - "bin/targets/ramips/rt3883/sha256sums"
-  skip_cleanup: true
-  on:
-    branch: master
-
-branches:
-  only:
-  - master
+#script:
+#  - |
+#    if [ -f "$HOME/.ccache/staging_dir.tar.xz" ]; then
+#      echo compiling from cache
+#      make -j3 V=w \
+#        && find bin \
+#        && cat bin/targets/ramips/rt3883/sha256sums
+#      else
+#        echo compiling tools
+#        make -j3 tools/compile \
+#          && make -j3 V=w toolchain/compile
+#      fi
+#
+#before_cache:
+#  - |
+#    if [ ! -f "$HOME/.ccache/staging_dir.tar.xz" ]; then
+#      echo storing compiled tools in cache
+#      tar -cf - staging_dir | xz -c -3 - > "$HOME/.ccache/staging_dir.tar.xz"
+#    fi
+#
+#deploy:
+#  provider: releases
+#  api_key:
+#    secure: "uAAt4jRusTUKxDGLSdha6Ut8RSKU7lRsPNuh8Y66yjK+yXVvEnhp4SLecQdHliIN+QdtwtljtdqpQXOdVI8gH+Ocn1XExaWPzFZMC52AZzQ6F+NEgT1H/duHRdpW7iVjNce8HI+ZKi0EP2Nuxqj5rmohjulMugt/rbLCiIebGUWE7zG3weQRIJmKAZRMG68q5it64Xf6BuBmgJ42rNmVQ4+hzIBIY2R4I04vY7aeB0yiNZ13gRoHCyQBiY+LtxbaC7m1Mr5LJtpQZG3GrZa/r/qR9yQL5IxdNXASHptlfpMVheF7j7oYnZmpWv3ky9ZtnmQ+hI1dr/wbjl7v3jeCflwTggWtKohYOHFlGCXZ26/Cres+EqOo1h8zyoArWILHR8qfhdypi/uBocYJ2kxuI8MtC5qZ0Bf338hpvMRGm6+f2Ip1plwzDsEcBsavIBCDpMDcru7vexnFQK40l4E0/4L9i5DtBcwRyheL3YIck+YF4TsB1g8gIH3STiVGgIsZOsHM5ARaPhPFDT78+GTrQhX0pAUKuiqnLTOlPPzfRXzaD1YQqHZJbntYiFdueGvzZ0YayqLfpa9BhaWl3VqtL0t7bwMhC26UWNq8repIwQ7+c1zbph6qjLyjVprb8MB9dTEVe8OC4Dgktqa1sPqmOO3WIDIKc6r6188AemZXu2Y="
+#  file:
+#    - "bin/targets/ramips/rt3883/openwrt-ramips-rt3883-rt-n56u-squashfs-sysupgrade.bin"
+#    - "bin/targets/ramips/rt3883/sha256sums"
+#  skip_cleanup: true
+#  on:
+#    branch: master
+#
+#branches:
+#  only:
+#  - master
