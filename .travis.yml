@@ -46,7 +46,7 @@ before_script:
     for package in $packages; do
       printf 'CONFIG_PACKAGE_%s=y\n' "$package" >> .config
     done && make defconfig
-
+  - printf 'AAA' ; cat .config ; printf 'BBB'
 script:
   - |
     if [ -f "$HOME/.ccache/staging_dir.tar.xz" ]; then
