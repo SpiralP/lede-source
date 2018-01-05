@@ -2,7 +2,7 @@ sudo: false
 language: cpp
 #cache: ccache
 
-script:
+before_script:
 # for some reason we would hang forever on "checking for a Python interpreter with version >= 2.5..."
 # making language: python, and when testing all versions, only 2.7 passed
 #  - source ~/virtualenv/python2.7/bin/activate
