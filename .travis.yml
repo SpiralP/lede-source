@@ -33,7 +33,8 @@ before_script:
 #  - |
 #    ./scripts/feeds update -a \
 #      && ./scripts/feeds install $packages
-  - |4
+  - |
+    # hello world
     printf 'CONFIG_TARGET_ramips=y
     CONFIG_TARGET_ramips_rt3883=y
     CONFIG_TARGET_ramips_rt3883_DEVICE_rt-n56u=y
