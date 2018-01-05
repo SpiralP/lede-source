@@ -5,7 +5,7 @@ cache: ccache
 before_script:
 # for some reason we would hang forever on "checking for a Python interpreter with version >= 2.5..."
 # making language: python, and when testing all versions, only 2.7 passed
-  - source ~/virtualenv/python2.7/bin/activate
+#  - source ~/virtualenv/python2.7/bin/activate
 # hacks to not build tools again
 #  - |
 #    if [ -f "$HOME/.ccache/staging_dir.tar.xz" ]; then
@@ -14,22 +14,22 @@ before_script:
 #        && echo > tools/Makefile \
 #        && echo > toolchain/Makefile
 #    fi
-  - |
-    packages="
-      hostapd
-      wpa-supplicant
-      odhcpd
-      luci-ssl
-      luci-app-uhttpd
-      luci-app-fwknopd
-      luci-app-sqm
-      luci-app-adblock
-      libustream-mbedtls
-      kmod-rt2x00-usb
-      kmod-rt2800-usb
-      mtr
-      tcpdump
-      "
+#  - |
+#    packages="
+#      hostapd
+#      wpa-supplicant
+#      odhcpd
+#      luci-ssl
+#      luci-app-uhttpd
+#      luci-app-fwknopd
+#      luci-app-sqm
+#      luci-app-adblock
+#      libustream-mbedtls
+#      kmod-rt2x00-usb
+#      kmod-rt2800-usb
+#      mtr
+#      tcpdump
+#      "
 #  - |
 #    ./scripts/feeds update -a \
 #      && ./scripts/feeds install $packages
