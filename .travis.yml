@@ -7,7 +7,6 @@ before_script:
 # making language: python, and when testing all versions, only 2.7 passed
   - source ~/virtualenv/python2.7/bin/activate
 # hacks to not build tools again
-  - false
   - |
     if [ -f "$HOME/.ccache/staging_dir.tar.xz" ]; then
       echo extracting staging_dir
